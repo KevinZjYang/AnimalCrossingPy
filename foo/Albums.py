@@ -1,9 +1,8 @@
 from urllib import request
 from bs4 import BeautifulSoup
 from pprint import pprint
+from docs import conf
 import sqlite3
-import config
-
 
 def GetAlbums():
     url = 'https://wiki.biligame.com/dongsen/%E5%94%B1%E7%89%87%E5%9B%BE%E9%89%B4'
@@ -12,7 +11,7 @@ def GetAlbums():
     soup = BeautifulSoup(page, 'html.parser')
     page.close()
 
-    con = sqlite3.Connection(config.GetFileName())
+    con = sqlite3.Connection(conf.GetFileName())
     cursor = con.cursor()
     try:
         sql = "create table Album (Name varchar primary key not null,Number integer,ForeignName varchar,Cover varchar ,Source varchar,BuyPrice varchar,SalePrice varchar)"

@@ -1,1 +1,1 @@
-pyinstaller -F -i logo.ico main.py
+pyinstaller -F -i docs\logo.ico foo\_main_.py

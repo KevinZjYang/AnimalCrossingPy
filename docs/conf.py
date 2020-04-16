@@ -1,3 +1,3 @@
 # 数据库文件的名字
-def GetFileName():
+def dbName():
     return 'Animals.db'
