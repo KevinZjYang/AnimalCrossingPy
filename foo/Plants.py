@@ -1,8 +1,8 @@
 from urllib import request
 from bs4 import BeautifulSoup
 from pprint import pprint
+import conf
 import sqlite3
-import config
 
 
 def GetPlants():
@@ -13,7 +13,7 @@ def GetPlants():
     soup = BeautifulSoup(page, 'html.parser')
     page.close()
 
-    con = sqlite3.Connection(config.GetFileName())
+    con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:
         sql = "create table Plant (Name varchar primary key not null,Image varchar ,Price integer)"

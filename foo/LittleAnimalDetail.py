@@ -1,8 +1,8 @@
 from urllib import request
 from bs4 import BeautifulSoup
 from pprint import pprint
+import conf
 import sqlite3
-import config
 
 def GetDeatilAndAddToSqlite(navurl):
     
@@ -10,7 +10,7 @@ def GetDeatilAndAddToSqlite(navurl):
     soup = BeautifulSoup(page, 'html.parser')
     page.close()
 
-    con = sqlite3.Connection(config.GetFileName())
+    con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:
        sql = "create table LittleAnimal (Name varchar primary key not null,Image varchar ,Gender varchar,Brithday varchar,Character varchar,Mantra varchar,Goal varchar,Motto varchar,ForeignName varchar)" 
@@ -65,7 +65,7 @@ def GetDeatilAndAddToSqlite(navurl):
         #pprint(name+image+Gender+brithkey+brith+characterkey+character+Mantrakey+Mantra+Goalkey+Goal+Mottokey+Motto+Foreignkey+Foreign)
         sql = f"insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,ForeignName) values ('{name}','{image}','{Gender}','{brith}','{character}','{Mantra}','{Goal}','{Motto}','{Foreign}')"
         cursor.execute(sql)
-        pprint(f"add '{name}'")
+        #pprint(f"add '{name}'")
     
     cursor.close()
     con.commit()

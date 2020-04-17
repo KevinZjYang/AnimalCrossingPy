@@ -1,7 +1,7 @@
 from urllib import request
 from bs4 import BeautifulSoup
 from pprint import pprint
-from docs import conf
+import conf
 import sqlite3
 
 def GetAlbums():
@@ -11,7 +11,7 @@ def GetAlbums():
     soup = BeautifulSoup(page, 'html.parser')
     page.close()
 
-    con = sqlite3.Connection(conf.GetFileName())
+    con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:
         sql = "create table Album (Name varchar primary key not null,Number integer,ForeignName varchar,Cover varchar ,Source varchar,BuyPrice varchar,SalePrice varchar)"

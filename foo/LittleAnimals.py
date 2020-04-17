@@ -23,8 +23,9 @@ def GetLittleAnimals():
                 host = 'https://wiki.biligame.com/'
                 navurl = host+href
                 #GetLittleAnimalDetail.SayHello('This is ','i')
-                #count = str(i=i+1)
-                LittleAnimalDetail.GetDeatilAndAddToSqlite(navurl)
 
+                LittleAnimalDetail.GetDeatilAndAddToSqlite(navurl)
+                i = i + 1
+                pprint(f"添加小动物{i}")
             except:
                 pass
