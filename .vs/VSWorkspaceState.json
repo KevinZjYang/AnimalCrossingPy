@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\foo",
-    "\\foo\\tests"
+    "\\foo"
   ],
-  "SelectedNode": "\\requirements.txt",
   "PreviewInSolutionExplorer": false
 }
