@@ -63,7 +63,7 @@ def GetDeatilAndAddToSqlite(navurl):
         
         #pprint('开始写入数据库...')
         #pprint(name+image+Gender+brithkey+brith+characterkey+character+Mantrakey+Mantra+Goalkey+Goal+Mottokey+Motto+Foreignkey+Foreign)
-        sql = f"insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,ForeignName) values ('{name}','{image}','{Gender}','{brith}','{character}','{Mantra}','{Goal}','{Motto}','{Foreign}')"
+        sql = f"""insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,ForeignName) values ("{name}","{image}","{Gender}","{brith}","{character}","{Mantra}","{Goal}","{Motto}","{Foreign}")"""
         cursor.execute(sql)
         #pprint(f"add '{name}'")
     

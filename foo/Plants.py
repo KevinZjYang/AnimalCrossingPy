@@ -50,7 +50,7 @@ def GetPlants():
         except:
             pass
         if sname != "":
-            sql = f"insert or replace into Plant (Name,Image,Price) values ('{sname}','{simage}','{iprice}')"
+            sql = f"""insert or replace into Plant (Name,Image,Price) values ("{sname}","{simage}","{iprice}")"""
             cursor.execute(sql)
 
     cursor.close()

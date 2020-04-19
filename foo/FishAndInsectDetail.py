@@ -36,7 +36,7 @@ def GetFishDeatilAndAddToSqlite(navurl):
     ssouth = tr[9].find('td').getText().strip()
     stime = tr[10].find('td').getText().strip()
     iprice = tr[11].find('td').getText().strip()
-    sql = f"insert or replace into Fish (Name,Image,Number,English ,Japanese ,Position ,Shape ,North ,South ,Time ,Price ) values ('{sname}','{src}','{inumber}','{seng}','{sjap}','{sposition}','{sshape}','{snorth}','{ssouth}','{stime}','{iprice}')"
+    sql = f"""insert or replace into Fish (Name,Image,Number,English ,Japanese ,Position ,Shape ,North ,South ,Time ,Price ) values ("{sname}","{src}","{inumber}","{seng}","{sjap}","{sposition}","{sshape}","{snorth}","{ssouth}","{stime}","{iprice}")"""
     cursor.execute(sql) 
     #pprint(sql)
 
@@ -44,7 +44,7 @@ def GetFishDeatilAndAddToSqlite(navurl):
     con.commit()
     con.close()
 
-def GetInsectDeatilAndAddToSqlite(navurl,i):
+def GetInsectDeatilAndAddToSqlite(navurl):
 
     page = request.urlopen(navurl)
     soup = BeautifulSoup(page, 'html.parser')
@@ -65,17 +65,17 @@ def GetInsectDeatilAndAddToSqlite(navurl,i):
     #pprint(tr[0])
 
     src = tr[0].find('img').attrs['src']
-    #inumber = tr[1].find('td').getText().strip()
-    sname = tr[1].find('td').getText().strip()
-    seng = tr[2].find('td').getText().strip()
-    sjap = tr[3].find('td').getText().strip()
-    sposition = tr[4].find('td').getText().strip()
-    ssharp = tr[5].find('td').getText().strip()
-    snorth = tr[7].find('td').getText().strip()
-    ssouth = tr[8].find('td').getText().strip()
-    stime = tr[9].find('td').getText().strip()
-    iprice = tr[10].find('td').getText().strip()
-    sql = f"insert or replace into Insect (Name,Image,Number,English ,Japanese ,Position ,Weather ,North ,South ,Time ,Price ) values ('{sname}','{src}','{i}','{seng}','{sjap}','{sposition}','{ssharp}','{snorth}','{ssouth}','{stime}','{iprice}')"
+    inumber = tr[1].find('td').getText().strip()
+    sname = tr[2].find('td').getText().strip()
+    seng = tr[3].find('td').getText().strip()
+    sjap = tr[4].find('td').getText().strip()
+    sposition = tr[5].find('td').getText().strip()
+    ssharp = tr[6].find('td').getText().strip()
+    snorth = tr[8].find('td').getText().strip()
+    ssouth = tr[9].find('td').getText().strip()
+    stime = tr[10].find('td').getText().strip()
+    iprice = tr[11].find('td').getText().strip()
+    sql = f"""insert or replace into Insect (Name,Image,Number,English ,Japanese ,Position ,Weather ,North ,South ,Time ,Price ) values ("{sname}","{src}","{inumber}","{seng}","{sjap}","{sposition}","{ssharp}","{snorth}","{ssouth}","{stime}","{iprice}")"""
     cursor.execute(sql) 
     #pprint(sql)
 
@@ -84,5 +84,5 @@ def GetInsectDeatilAndAddToSqlite(navurl,i):
     con.close()
 
 
-#url = 'https://wiki.biligame.com/dongsen/%E4%B8%AD%E5%8D%8E%E7%BB%92%E8%9E%AF%E8%9F%B9'
-#GetDeatilAndAddToSqlite(url)
+#url = 'https://wiki.biligame.com//dongsen/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%E5%87%A4%E8%9D%B6'
+#GetInsectDeatilAndAddToSqlite(url)
