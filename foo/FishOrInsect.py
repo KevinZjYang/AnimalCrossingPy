@@ -46,9 +46,10 @@ def GetInsects():
                 href = td.find('a').attrs['href']
                 host = 'https://wiki.biligame.com/'
                 navurl = host+href
-                #pprint(navurl)
-                FishAndInsectDetail.GetInsectDeatilAndAddToSqlite(navurl)
                 i=i+1
+                #pprint(navurl)
+                FishAndInsectDetail.GetInsectDeatilAndAddToSqlite(navurl,i)
+               
                 pprint(f"添加昆虫{i}")
             except:
                 pass
