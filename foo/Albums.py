@@ -40,15 +40,15 @@ def GetAlbums():
         except:
             pass
         try:
-            td0 = td[3]
+            td0 = td[4]
             src = td0.find('img').attrs['src']
             #pprint(src)
             simage = src
         except:
             pass
         try:
-            #pprint(td[4].getText().strip())
-            ssource = td[4].getText().strip()
+            #pprint(td[5].getText().strip())
+            ssource = td[5].getText().strip()
         except:
             pass
         # try:
@@ -73,7 +73,7 @@ def GetAlbums():
             # pass
        
         if snumber != "":
-            # pprint(f"'{snumber}','{sname}','{sforeign}','{simage}','{ssource}','{sbuy}','{ssale}')")
+            #pprint(f"'{snumber}','{sname}','{sforeign}','{simage}','{ssource}','{sbuy}','{ssale}')")
             sql = f"""insert or replace into Album (Name,Number,ForeignName,Cover ,Source ,BuyPrice ,SalePrice) values ("{sname}","{snumber}","{sforeign}","{simage}","{ssource}","{sbuy}","{ssale}")"""
             cursor.execute(sql)
             #pprint(sql)
