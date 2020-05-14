@@ -31,7 +31,7 @@ MANIFEST
 .vscode/
 
 #db cache
-.db-journal
+*.db-journal
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
