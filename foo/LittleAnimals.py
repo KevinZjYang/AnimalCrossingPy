@@ -17,7 +17,7 @@ def GetLittleAnimals():
     con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:
-       sql = "create table LittleAnimal (Name varchar primary key not null,Image varchar ,Gender varchar,Brithday varchar,Character varchar,Mantra varchar,Goal varchar,Motto varchar,ForeignName varchar)" 
+       sql = "create table LittleAnimal (Name varchar primary key not null,Image varchar ,Gender varchar,Brithday varchar,Character varchar,Mantra varchar,Goal varchar,Motto varchar,ForeignName varchar,HomePic varchar)" 
        cursor.execute(sql)
     except :
        pass
@@ -78,16 +78,26 @@ def GetLittleAnimals():
                     #外文名称
                     #Foreignkey= text[4].getText().strip()
                     Foreign = font[4].getText().strip()
-        
-                    #pprint('开始写入数据库...')
-                    #pprint(name+image+Gender+brithkey+brith+characterkey+character+Mantrakey+Mantra+Goalkey+Goal+Mottokey+Motto+Foreignkey+Foreign)
-                    sql = f"""insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,ForeignName) values ("{name}","{image}","{Gender}","{brith}","{character}","{Mantra}","{Goal}","{Motto}","{Foreign}")"""
-                    cursor.execute(sql)
-                    #pprint(f"add '{name}'")
-                    i = i + 1
-                    pprint(f"添加小动物{i}：{name}")
+                
+                p = soup.findAll('a',class_='image')
+                piclist = []
+                for img in p:
+                    homePic=img.find('img').attrs['src']
+                    if "/thumb/" in homePic:
+                        piclist.append(homePic)
+                
+                #pprint('开始写入数据库...')
+                #pprint(name+image+Gender+brithkey+brith+characterkey+character+Mantrakey+Mantra+Goalkey+Goal+Mottokey+Motto+Foreignkey+Foreign)
+                sql = f"""insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,ForeignName,HomePic) values ("{name}","{image}","{Gender}","{brith}","{character}","{Mantra}","{Goal}","{Motto}","{Foreign}","{piclist}")"""
+                cursor.execute(sql)
+                #pprint(f"add '{name}'")
+                i = i + 1
+                pprint(f"添加小动物{i}：{name}")   
+                    
             except:
                 pass
     cursor.close()
     con.commit()
     con.close()
+
+#GetLittleAnimals()
