@@ -12,7 +12,6 @@ def GetPlants():
     page = request.urlopen(url)
     soup = BeautifulSoup(page, 'html.parser')
     page.close()
-
     con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:

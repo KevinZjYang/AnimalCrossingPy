@@ -4,6 +4,7 @@ import Albums
 import LittleAnimals
 import FishOrInsect
 import Clothes
+import time
 
 
 def main():
@@ -29,6 +30,7 @@ def main():
 
 if __name__ == '__main__':
     action= input("请输入数字：0全部 1植物 2唱片 3小动物 4鱼类 5昆虫 6服装")
+    t0 = time.time()
     if action== '0':
         main()
     if action == '1':
@@ -49,7 +51,7 @@ if __name__ == '__main__':
     if action == '6':
         pprint('开始采集服装...视网络状况此过程耗时可能较长，请耐心等待...')
         Clothes.GetAllClothes()
-    pprint('采集完成')
+    pprint(f"采集完成,共用时{round((time.time()-t0),1)}秒")
 
 
 
