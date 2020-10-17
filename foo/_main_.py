@@ -29,7 +29,7 @@ def main():
     Clothes.GetAllClothes()
 
 if __name__ == '__main__':
-    action= input("请输入数字：0全部 1植物 2唱片 3小动物 4鱼类 5昆虫 6服装")
+    action= input("请输入数字：0全部 1植物 2唱片 3小动物 4鱼类 5昆虫 6服装  ")
     t0 = time.time()
     if action== '0':
         main()
