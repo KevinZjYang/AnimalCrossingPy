@@ -17,7 +17,7 @@ def GetLittleAnimals():
     con = sqlite3.Connection(conf.dbName())
     cursor = con.cursor()
     try:
-       sql = "create table LittleAnimal (Name varchar primary key not null,Image varchar ,Gender varchar,Brithday varchar,Character varchar,Mantra varchar,Goal varchar,Motto varchar,PersonalStyle varchar,LikeColor varchar,Pitch varchar,ForeignName varchar,HomePic varchar)" 
+       sql = "create table LittleAnimal (Name varchar primary key not null,Image varchar ,Gender varchar,Brithday varchar,Character varchar,Mantra varchar,Goal varchar,Motto varchar,PersonalStyle varchar,LikeColor varchar,Pitch varchar,Race varchar,ForeignName varchar,HomePic varchar)" 
        cursor.execute(sql)
     except :
        pass
@@ -27,12 +27,15 @@ def GetLittleAnimals():
     i = 0
     for tr in tab.tbody.findAll('tr'):
         for td in tr.findAll('td'):
+            if(i>3):
+                break
+
             try:
                 href = td.find('a').attrs['href']
                 host = 'https://wiki.biligame.com/'
                 navurl = host+href
                 #GetLittleAnimalDetail.SayHello('This is ','i')
-
+                
                 #LittleAnimalDetail.GetDeatilAndAddToSqlite(navurl)
                 page = request.urlopen(navurl)
                 soup = BeautifulSoup(page, 'html.parser')
@@ -57,6 +60,7 @@ def GetLittleAnimals():
                 sPitch=""
                 Motto=""
                 Foreign=""
+                sRace=""
                 pokeleft = soup.find_all('div',class_='box-poke-left')
                 for item in pokeleft:
                     #性别
@@ -88,11 +92,14 @@ def GetLittleAnimals():
                     #音高
                     sPitch=font[6].getText().strip()
 
+                    #种族
+                    sRace=font[7].getText().strip()
+
                     #座右铭
                     Motto  = item.find('div',class_='box-font').getText()
 
                     #外文名称
-                    Foreign = font[7].getText().strip()
+                    Foreign = font[8].getText().strip()
                     #pprint(Foreign)
                 
                 p = soup.findAll('p')
@@ -111,7 +118,7 @@ def GetLittleAnimals():
                 
                 #pprint('开始写入数据库...')
                 #pprint(piclist)
-                sql = f"""insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,PersonalStyle,LikeColor,Pitch,ForeignName,HomePic) values ("{name}","{image}","{Gender}","{brith}","{character}","{Mantra}","{Goal}","{Motto}","{sStyle}","{sColor}","{sPitch}","{Foreign}","{piclist}")"""
+                sql = f"""insert or replace into LittleAnimal (Name,Image,Gender,Brithday,Character,Mantra,Goal,Motto,PersonalStyle,LikeColor,Pitch,Race,ForeignName,HomePic) values ("{name}","{image}","{Gender}","{brith}","{character}","{Mantra}","{Goal}","{Motto}","{sStyle}","{sColor}","{sPitch}","{sRace}","{Foreign}","{piclist}")"""
                 #pprint(sql)
                 cursor.execute(sql)
                 #pprint(f"add '{name}'")
