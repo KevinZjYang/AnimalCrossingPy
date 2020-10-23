@@ -1,3 +1,5 @@
 # AnimalCrossingPy
- '''pip3 install pyinstaller -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com'''
- 进入env pip freeze > requirements.txt
+ - 安装python
+ - 替换“One-click-Packaging.cmd”中python的安装路径
+ - 运行“One-click-Packaging.cmd”安装所需依赖
+ 
